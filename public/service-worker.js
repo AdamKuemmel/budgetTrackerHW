@@ -16,7 +16,7 @@ const FILES_TO_CACHE = [
   "/styles.css",
 ];
 
-// install
+// installs the service worker
 self.addEventListener("install", function (evt) {
   evt.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -28,6 +28,7 @@ self.addEventListener("install", function (evt) {
   self.skipWaiting();
 });
 
+//removes old data
 self.addEventListener("activate", function (evt) {
   evt.waitUntil(
     caches.keys().then((keyList) => {
@@ -41,7 +42,7 @@ self.addEventListener("activate", function (evt) {
       );
     })
   );
-
+  //asks the client to take taekcontrol over service worker
   self.clients.claim();
 });
 

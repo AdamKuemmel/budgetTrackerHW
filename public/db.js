@@ -1,3 +1,4 @@
+//undeclared variable to be called in later functions
 let db;
 
 //open a request to the db
@@ -21,6 +22,7 @@ request.onerror = function (event) {
   console.log("Woops! " + event.target.errorCode);
 };
 
+//save using readwrite, bc were devs
 function saveRecord(record) {
   const transaction = db.transaction(["pending"], "readwrite");
   const store = transaction.objectStore("pending");
@@ -32,7 +34,7 @@ function checkDatabase() {
   const transaction = db.transaction(["pending"], "readwrite");
   const store = transaction.objectStore("pending");
   const getAll = store.getAll();
-
+  //post route
   getAll.onsuccess = function () {
     if (getAll.result.length > 0) {
       fetch("/api/transaction/bulk", {
@@ -53,6 +55,7 @@ function checkDatabase() {
     }
   };
 }
+//clear pending data
 function deletePending() {
   const transaction = db.transaction(["pending"], "readwrite");
   const store = transaction.objectStore("pending");
