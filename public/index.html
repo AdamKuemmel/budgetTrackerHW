@@ -18,6 +18,16 @@
     <link rel="stylesheet" href="styles.css" />
 
     <title>Budget Tracker</title>
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("service-worker.js").then((reg) => {
+            console.log("We found your service worker file!", reg);
+          });
+        });
+      }
+    </script>
   </head>
   <body>
     <div class="wrapper">
@@ -55,22 +65,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src="index.js"></script>
-
-    <script>
-      const request = window.indexedDB.open("firstDatabase", 1);
-
-      request.onsuccess = (event) => {
-        console.log(request.result.name);
-      };
-    </script>
-    <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker.register("service-worker.js").then((reg) => {
-            console.log("We found your service worker file!", reg);
-          });
-        });
-      }
-    </script>
+    <script src="db.js"></script>
   </body>
 </html>
